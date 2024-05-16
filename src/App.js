@@ -1,12 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
 import localweather from './StJohnsWeather.json';
+import ottawaweather from './OttawaWeather.json';
 
 function App() {
+  
+  const [weatherForecast, setWeatherForecast] = useState(localweather);
   return (
     <>
+      <button onClick={ (evt) => {
+        weatherForecast.city == "St John's" ? setWeatherForecast(ottawaweather) : setWeatherForecast(localweather);
+      }}>{weatherForecast.city}</button>
       <h2>Eric's Weather</h2>
-      <WeatherList weather={localweather}></WeatherList>
+      <WeatherList weather={weatherForecast}></WeatherList>
     </>
   );
 }
